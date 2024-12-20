@@ -8,4 +8,8 @@ public class Cell<T> {
   public T getOccupant(){
     return this.occupant;
   }
+
+  public boolean isEmpty(){
+    return occupant == null;
+  }
 }
