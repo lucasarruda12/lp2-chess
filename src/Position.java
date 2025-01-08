@@ -9,4 +9,8 @@ public class Position {
 
   public int getX() {return x;}
   public int getY() {return y;}
+
+  public Position move(int x2, y2){
+    return new Position(x + x2, y + y2);
+  }
 }
