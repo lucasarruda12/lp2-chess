@@ -1,3 +1,7 @@
+package com.example.gamerules;
+
+import java.util.ArrayList;
+
 /*
  A IDEIA É QUE CADA PEÇA SAIBA SÓ, RECEBENDO O ESTADO DO TABULEIRO
  E A SUA POSIÇÃO, QUAIS SÃO AS CASAS QUE ELA PODERIA IR.
@@ -11,12 +15,17 @@
  mas agora já está feito. Deus nos ilumine a todos. Amém.)
 */
 
-public abstract class Piece implements Colorred {
+public abstract class Piece implements Collored {
     protected Color color;
+    public char icon;
 
     public Color getColor(){
         return this.color;
     }
 
-    public ArrayList<Position> calculateValidMoves(Position p, Board state);
+    public char getIcon(){
+        return this.icon;
+    }
+
+    public abstract ArrayList<Position> calculateValidMoves(Position p, Board state);
 }
