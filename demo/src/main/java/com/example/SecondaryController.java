@@ -19,6 +19,11 @@ public class SecondaryController {
                 char icon = game.getIconAtPosition(i, j);
 
                 Button b = new Button(Character.toString(icon));
+
+                if ((i + j) % 2 == 0) {
+                    b.setStyle("-fx-background-color: #32a852;");;    
+                }
+
                 board.add(b, i, j);
             }
         }
