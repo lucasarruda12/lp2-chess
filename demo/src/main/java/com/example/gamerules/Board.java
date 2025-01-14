@@ -13,7 +13,17 @@ public class Board {
         ArrayList<Cell<Piece>> state = new ArrayList<>();
 
         for (int i = 0; i < 8; i++){
-            state.add(new Cell<Piece>());
+            if (i == 0 || i == 7) {
+                state.add(new Cell<Piece>(new Rook(Color.BLACK)));
+            } else if (i == 1 || i == 6) {
+                state.add(new Cell<Piece>(new Knight(Color.BLACK)));
+            } else if (i == 2 || i == 5) {
+                state.add(new Cell<Piece>(new Bishop(Color.BLACK)));
+            } else if (i == 3) {
+                state.add(new Cell<Piece>());
+            } else if (i == 4) {
+                state.add(new Cell<Piece>());
+            }
         }
 
         for (int i = 0; i < 8; i++){
@@ -29,7 +39,17 @@ public class Board {
         }
 
         for (int i = 0; i < 8; i++){
-            state.add(new Cell<Piece>());
+            if (i == 0 || i == 7) {
+                state.add(new Cell<Piece>(new Rook(Color.WHITE)));
+            } else if (i == 1 || i == 6) {
+                state.add(new Cell<Piece>(new Knight(Color.WHITE)));
+            } else if (i == 2 || i == 5) {
+                state.add(new Cell<Piece>(new Bishop(Color.WHITE)));
+            } else if (i == 3) {
+                state.add(new Cell<Piece>());
+            } else if (i == 4) {
+                state.add(new Cell<Piece>());
+            }
         }
 
         return new Board(state);
