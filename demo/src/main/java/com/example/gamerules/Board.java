@@ -22,7 +22,7 @@ public class Board {
             } else if (i == 3) {
                 state.add(new Cell<Piece>());
             } else if (i == 4) {
-                state.add(new Cell<Piece>());
+                state.add(new Cell<Piece>(new King(Color.BLACK)));
             }
         }
 
@@ -48,7 +48,7 @@ public class Board {
             } else if (i == 3) {
                 state.add(new Cell<Piece>());
             } else if (i == 4) {
-                state.add(new Cell<Piece>());
+                state.add(new Cell<Piece>(new King(Color.WHITE)));
             }
         }
 
