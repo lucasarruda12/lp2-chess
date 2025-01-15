@@ -57,6 +57,8 @@ public class SecondaryController {
         Position initial = new Position(x, y);
         ArrayList<Position> possibleMoves = game.getPossibleMovesFromPosition(initial);
 
+        if (possibleMoves.isEmpty()) return;
+
         for (Node child : board.getChildren()) {
             Position p = new Position(GridPane.getColumnIndex(child), GridPane.getRowIndex(child));
 
