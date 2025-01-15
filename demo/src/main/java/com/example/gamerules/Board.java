@@ -55,6 +55,13 @@ public class Board {
         return new Board(state);
     }
 
+    public void move(Position target, Position destination){
+        Cell<Piece> targetCell = state.get(target.to1D());
+
+        state.set(target.to1D(), new Cell<>());
+        state.set(destination.to1D(), targetCell);
+    }
+
     public char getIconAtPosition(Position p){
         Cell<Piece> cell = state.get(p.to1D());
 

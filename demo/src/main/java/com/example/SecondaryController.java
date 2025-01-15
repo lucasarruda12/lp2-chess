@@ -17,6 +17,16 @@ public class SecondaryController {
 
     @FXML
     private void initialize(){
+        reloadBoard();
+    }
+
+    private void reset(){
+        board.getChildren().clear();
+    }
+
+    private void reloadBoard(){
+        reset();
+
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
                 char icon = game.getIconAtPosition(i, j);
@@ -43,54 +53,27 @@ public class SecondaryController {
         }
     }
 
-    private void reset(){
-        for (Node child : board.getChildren()) {
-            int x = GridPane.getColumnIndex(child);
-            int y = GridPane.getRowIndex(child);
-
-            if ((x + y) % 2 == 0) {
-                child.setStyle("-fx-background-color: #32a852;");
-            } else {
-                child.setStyle("-fx-background-color: white");
-            }
-
-            Button b = (Button) child;
-
-            b.setOnAction(event -> {
-                Integer rowIndex = GridPane.getRowIndex(b);
-                Integer colIndex = GridPane.getColumnIndex(b);
-
-                handleClick(colIndex, rowIndex);
-            });
-        }
-    }
-
     private void handleClick(int x, int y){
-        ArrayList<Position> possibleMoves = game.getPossibleMovesFromPosition(new Position(x, y));
+        Position initial = new Position(x, y);
+        ArrayList<Position> possibleMoves = game.getPossibleMovesFromPosition(initial);
 
         for (Node child : board.getChildren()) {
             Position p = new Position(GridPane.getColumnIndex(child), GridPane.getRowIndex(child));
 
+            Button button = (Button) child;
+
             if (possibleMoves.contains(p)){
-                child.setStyle("-fx-background-color: lightblue;");
-            } else {
-                Button button = (Button) child;
+                button.setStyle("-fx-background-color: lightblue;");
 
                 button.setOnAction(event -> {
-                    reset();
+                    game.move(initial, p);
+                    reloadBoard();
+                });
+            } else {
+                button.setOnAction(event -> {
+                    reloadBoard();
                 });
             }
-        }
-    }
-
-    private void highlightButtonAt(int x, int y){
-        Button button = (Button) board.getChildren().stream()
-                .filter(node -> GridPane.getRowIndex(node) == y && GridPane.getColumnIndex(node) == x)
-                .findFirst()
-                .orElse(null);
-
-        if (button != null) {
-            button.setStyle("-fx-background-color: lightblue;");
         }
     }
 }

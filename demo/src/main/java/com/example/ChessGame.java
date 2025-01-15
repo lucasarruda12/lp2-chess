@@ -19,4 +19,8 @@ public class ChessGame {
     public ArrayList<Position> getPossibleMovesFromPosition(Position p) {
         return gameBoard.getPossibleMovesFromPosition(p);
     }
+
+    public void move(Position target, Position destination){
+        gameBoard.move(target, destination);
+    }
 }
