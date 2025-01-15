@@ -66,6 +66,16 @@ public class Board {
 
     }
 
+    public ArrayList<Position> getPossibleMovesFromPosition(Position p) {
+        Cell<Piece> cell = state.get(p.to1D());
+
+        if (cell.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return cell.getOccupant().calculateValidMoves(p, this);
+        }
+    }
+
     public boolean isOcupied(Position p){
         return state.get(p.to1D()).getOccupant() != null;
     }

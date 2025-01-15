@@ -23,8 +23,7 @@ public class Pawn extends Piece {
         return null;
     }
 
-    // (TODO) Não sei se ficou melhor assim, ainda tô terminando.
-    private ArrayList<Position> calculateBlackPawn(Position pos, Board state){
+    private ArrayList<Position> calculateWhitePawn(Position pos, Board state){
         ArrayList<Position> validMoves = new ArrayList<Position>();
 
         // If the pawn is at the end of the board, then it cannot move
@@ -54,7 +53,7 @@ public class Pawn extends Piece {
         return validMoves;
     }
 
-    private ArrayList<Position> calculateWhitePawn(Position pos, Board state){
+    private ArrayList<Position> calculateBlackPawn(Position pos, Board state){
         ArrayList<Position> validMoves = new ArrayList<Position>();
 
         // If the pawn is at the end of the board, then it cannot move

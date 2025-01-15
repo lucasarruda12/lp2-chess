@@ -18,4 +18,14 @@ public class Position {
   public int to1D(){
     return 8 * y + x;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
+
+    Position other = (Position) obj;
+    return x == other.getX() && y == other.getY();
+  }
 }
