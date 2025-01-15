@@ -20,7 +20,7 @@ public class Board {
             } else if (i == 2 || i == 5) {
                 state.add(new Cell<Piece>(new Bishop(Color.BLACK)));
             } else if (i == 3) {
-                state.add(new Cell<Piece>());
+                state.add(new Cell<Piece>(new Queen(Color.BLACK)));
             } else if (i == 4) {
                 state.add(new Cell<Piece>(new King(Color.BLACK)));
             }
@@ -46,7 +46,7 @@ public class Board {
             } else if (i == 2 || i == 5) {
                 state.add(new Cell<Piece>(new Bishop(Color.WHITE)));
             } else if (i == 3) {
-                state.add(new Cell<Piece>());
+                state.add(new Cell<Piece>(new Queen(Color.WHITE)));
             } else if (i == 4) {
                 state.add(new Cell<Piece>(new King(Color.WHITE)));
             }
