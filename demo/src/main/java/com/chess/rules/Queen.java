@@ -8,8 +8,9 @@ import com.chess.structure.Piece;
 import com.chess.structure.Position;
 
 public class Queen extends Piece {
-    public Queen(Color color){
+    public Queen(Color color, Position pos){
         this.color = color;
+        this.pos = pos;
 
         if (color == Color.WHITE) {
             this.icon = '♕';
@@ -21,12 +22,12 @@ public class Queen extends Piece {
     }
 
     @Override
-    public ArrayList<Position> calculateValidMoves(Position pos, Board state){
+    public ArrayList<Position> calculateValidMoves(Board state){
         ArrayList<Position> validMoves = new ArrayList<>();
 
         // A queen can move like a Rook and a Bishop
-        ArrayList<Position> RookValidMoves = new Rook(color).calculateValidMoves(pos, state);
-        ArrayList<Position> BishopValidMoves = new Bishop(color).calculateValidMoves(pos, state);
+        ArrayList<Position> RookValidMoves = new Rook(color, pos).calculateValidMoves(state);
+        ArrayList<Position> BishopValidMoves = new Bishop(color, pos).calculateValidMoves(state);
         
         validMoves.addAll(RookValidMoves);
         validMoves.addAll(BishopValidMoves);
