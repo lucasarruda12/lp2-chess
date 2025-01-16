@@ -84,14 +84,10 @@ public class Board {
     }
 
     public boolean isPieceThreathened(Piece p){
-        for (Piece other : state) {
-            if (other.getColor() != p.getColor() &&
-            other.calculateValidMoves(this).contains(p.getPosition())){
-                return true;
-            }
-        }   
-
-        return false;
+        return state.stream().anyMatch(other -> 
+            other.getColor() != p.getColor() &&
+            other.calculateValidMoves(this).contains(p.getPosition())
+        );
     }
 
     public char getIconAtPosition(Position p){
