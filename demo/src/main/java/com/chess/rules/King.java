@@ -35,7 +35,6 @@ public class King extends Piece {
         for (int i = 0; i < 8; i++) {
             // If a move is possible, then check if the move is valid
             if (pos.getX() + X[i] >= 0 && pos.getX() + X[i] < 8 && pos.getY() + Y[i] >= 0 && pos.getY() + Y[i] < 8) {
-                // (TODO) Check if the king is in check
                 Position move = pos.move(X[i], Y[i]);
                 if (!state.isOcupied(move) || state.isOpositColor(move, this.color)) {
                     validMoves.add(move);
