@@ -1,7 +1,9 @@
 package com.chess;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import com.chess.rules.King;
 import com.chess.structure.Position;
 
 import javafx.fxml.FXML;
@@ -57,8 +59,18 @@ public class SecondaryController {
     private void handleClick(int x, int y){
         Position initial = new Position(x, y);
         ArrayList<Position> possibleMoves = game.getPossibleMovesFromPosition(initial);
-
-        if (possibleMoves.isEmpty()) return;
+        if (game.checkMate(initial)) {
+            try {
+                endGame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        if (possibleMoves.isEmpty()) {
+            // TODO check for stalemates
+            return;   
+        }
 
         for (Node child : board.getChildren()) {
             Position p = new Position(GridPane.getColumnIndex(child), GridPane.getRowIndex(child));
@@ -78,5 +90,9 @@ public class SecondaryController {
                 });
             }
         }
+    }
+
+    private void endGame() throws IOException {
+        App.setRoot("primary");
     }
 }

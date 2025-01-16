@@ -45,10 +45,10 @@ public class Board {
         state.add(new Bishop(Color.WHITE, new Position(5, 7)));
 
         // 4 kings and queens
-        state.add(new King(Color.BLACK, new Position(3, 0)));
-        state.add(new Queen(Color.BLACK, new Position(4, 0)));
-        state.add(new King(Color.WHITE, new Position(3, 7)));
-        state.add(new Queen(Color.WHITE, new Position(4, 7)));
+        state.add(new King(Color.BLACK, new Position(4, 0)));
+        state.add(new Queen(Color.BLACK, new Position(3, 0)));
+        state.add(new King(Color.WHITE, new Position(4, 7)));
+        state.add(new Queen(Color.WHITE, new Position(3, 7)));
 
         return new Board(state);
     }

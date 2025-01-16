@@ -39,4 +39,12 @@ public class ChessGame {
         turn = turn.opositeColor();
         gameBoard = gameBoard.move(target, destination);
     }
+
+    public boolean checkMate(Position p){
+        return gameBoard.isKingInCheck(turn) && gameBoard.getPossibleMovesFromPosition(p).isEmpty();
+    }
+
+    public boolean stalemate() {
+        return true;
+    }
 }
