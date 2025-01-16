@@ -1,4 +1,4 @@
-package com.example.gamerules;
+package com.chess.structure;
 public class Position {
   private int x;
   private int y;

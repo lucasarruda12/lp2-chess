@@ -1,7 +1,8 @@
-package com.example;
+package com.chess;
 
 import java.util.ArrayList;
-import com.example.gamerules.Position;
+
+import com.chess.structure.Position;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;

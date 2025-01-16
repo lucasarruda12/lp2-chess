@@ -1,6 +1,13 @@
-package com.example.gamerules;
+package com.chess.structure;
 
 import java.util.ArrayList;
+
+import com.chess.rules.Bishop;
+import com.chess.rules.King;
+import com.chess.rules.Knight;
+import com.chess.rules.Pawn;
+import com.chess.rules.Queen;
+import com.chess.rules.Rook;
 
 public class Board {
     private ArrayList<Cell<Piece>> state;

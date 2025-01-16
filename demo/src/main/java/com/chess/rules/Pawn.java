@@ -1,6 +1,11 @@
-package com.example.gamerules;
+package com.chess.rules;
 
 import java.util.ArrayList;
+
+import com.chess.structure.Board;
+import com.chess.structure.Color;
+import com.chess.structure.Piece;
+import com.chess.structure.Position;
 
 public class Pawn extends Piece {
     public Pawn(Color color){

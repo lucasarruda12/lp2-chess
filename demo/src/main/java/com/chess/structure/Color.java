@@ -1,4 +1,4 @@
-package com.example.gamerules;
+package com.chess.structure;
 
 public enum Color {
     BLACK, WHITE;

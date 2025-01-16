@@ -1,10 +1,10 @@
-package com.example;
+package com.chess;
 
 import java.util.ArrayList;
 
-import com.example.gamerules.Board;
-import com.example.gamerules.Position;
-import com.example.gamerules.Color;
+import com.chess.structure.Board;
+import com.chess.structure.Color;
+import com.chess.structure.Position;
 
 public class ChessGame {
     private Board gameBoard;
