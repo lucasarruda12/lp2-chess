@@ -8,8 +8,9 @@ import com.chess.structure.Piece;
 import com.chess.structure.Position;
 
 public class Bishop extends Piece {
-    public Bishop(Color color){
+    public Bishop(Color color, Position pos){
         this.color = color;
+        this.pos = pos;
 
         if (color == Color.WHITE) {
             this.icon = '♗';
@@ -21,7 +22,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public ArrayList<Position> calculateValidMoves(Position pos, Board state){
+    public ArrayList<Position> calculateValidMoves(Board state){
         ArrayList<Position> validMoves = new ArrayList<Position>();
 
         /** A bishop can move in 4 directions: up-right, up-left, down-right and down-left

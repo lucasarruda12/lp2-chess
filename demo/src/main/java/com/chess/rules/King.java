@@ -8,8 +8,9 @@ import com.chess.structure.Piece;
 import com.chess.structure.Position;
 
 public class King extends Piece {
-    public King(Color color){
+    public King(Color color, Position pos){
         this.color = color;
+        this.pos = pos;
 
         if (color == Color.WHITE) {
             this.icon = '♔';
@@ -21,7 +22,7 @@ public class King extends Piece {
     }
 
     @Override
-    public ArrayList<Position> calculateValidMoves(Position pos, Board state){
+    public ArrayList<Position> calculateValidMoves(Board state){
         ArrayList<Position> validMoves = new ArrayList<Position>();
 
         /** A king can move in 8 directions: up, down, left, right, up-right, 

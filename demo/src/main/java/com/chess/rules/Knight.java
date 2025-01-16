@@ -8,8 +8,9 @@ import com.chess.structure.Piece;
 import com.chess.structure.Position;
 
 public class Knight extends Piece{
-    public Knight(Color color){
+    public Knight(Color color, Position pos){
         this.color = color;
+        this.pos = pos;
 
         if (color == Color.WHITE) {
             this.icon = '♘';
@@ -21,7 +22,7 @@ public class Knight extends Piece{
     }
 
     @Override
-    public ArrayList<Position> calculateValidMoves(Position pos, Board state){
+    public ArrayList<Position> calculateValidMoves(Board state){
         ArrayList<Position> validMoves = new ArrayList<Position>();
 
         /** A knight can move in an L shape, two squares in one direction 

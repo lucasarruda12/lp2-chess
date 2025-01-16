@@ -8,8 +8,9 @@ import com.chess.structure.Piece;
 import com.chess.structure.Position;
 
 public class Pawn extends Piece {
-    public Pawn(Color color){
+    public Pawn(Color color, Position pos){
         this.color = color;
+        this.pos = pos;
 
         if (color == Color.WHITE) {
             this.icon = '♙';
@@ -21,14 +22,14 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public ArrayList<Position> calculateValidMoves(Position p, Board state){
-        if (this.color == Color.WHITE) return calculateWhitePawn(p, state);
-        if (this.color == Color.BLACK) return calculateBlackPawn(p, state);
+    public ArrayList<Position> calculateValidMoves(Board state){
+        if (this.color == Color.WHITE) return calculateWhitePawn(state);
+        if (this.color == Color.BLACK) return calculateBlackPawn(state);
         
         return null;
     }
 
-    private ArrayList<Position> calculateWhitePawn(Position pos, Board state){
+    private ArrayList<Position> calculateWhitePawn(Board state){
         ArrayList<Position> validMoves = new ArrayList<Position>();
 
         // If the pawn is at the end of the board, then it cannot move
@@ -58,7 +59,7 @@ public class Pawn extends Piece {
         return validMoves;
     }
 
-    private ArrayList<Position> calculateBlackPawn(Position pos, Board state){
+    private ArrayList<Position> calculateBlackPawn(Board state){
         ArrayList<Position> validMoves = new ArrayList<Position>();
 
         // If the pawn is at the end of the board, then it cannot move

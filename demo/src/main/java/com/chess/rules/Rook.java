@@ -8,8 +8,9 @@ import com.chess.structure.Piece;
 import com.chess.structure.Position;
 
 public class Rook extends Piece {
-    public Rook(Color color){
+    public Rook(Color color, Position pos){
         this.color = color;
+        this.pos = pos;
 
         if (color == Color.WHITE) {
             this.icon = '♖';
@@ -21,7 +22,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public ArrayList<Position> calculateValidMoves(Position pos, Board state){
+    public ArrayList<Position> calculateValidMoves(Board state){
         ArrayList<Position> validMoves = new ArrayList<Position>();
 
         /** A rook can move in 4 directions: up, down, left and right
