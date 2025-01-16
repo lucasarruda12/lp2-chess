@@ -28,7 +28,7 @@ public class ChessGame {
     }
 
     public void move(Position target, Position destination){
-        gameBoard.move(target, destination);
         turn = turn.opositeColor();
+        gameBoard = gameBoard.move(target, destination);
     }
 }

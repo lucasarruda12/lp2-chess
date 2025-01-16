@@ -27,34 +27,71 @@ public class Board {
         }
 
         // 4 Rooks
-        state.add(new Rook(Color.WHITE, new Position(0, 0)));
-        state.add(new Rook(Color.WHITE, new Position(7, 0)));
-        state.add(new Rook(Color.BLACK, new Position(0, 7)));
-        state.add(new Rook(Color.BLACK, new Position(7, 7)));
+        state.add(new Rook(Color.BLACK, new Position(0, 0)));
+        state.add(new Rook(Color.BLACK, new Position(7, 0)));
+        state.add(new Rook(Color.WHITE, new Position(0, 7)));
+        state.add(new Rook(Color.WHITE, new Position(7, 7)));
 
         // 4 knights
-        state.add(new Knight(Color.WHITE, new Position(1, 0)));
-        state.add(new Knight(Color.WHITE, new Position(6, 0)));
-        state.add(new Knight(Color.BLACK, new Position(1, 7)));
-        state.add(new Knight(Color.BLACK, new Position(6, 7)));
+        state.add(new Knight(Color.BLACK, new Position(1, 0)));
+        state.add(new Knight(Color.BLACK, new Position(6, 0)));
+        state.add(new Knight(Color.WHITE, new Position(1, 7)));
+        state.add(new Knight(Color.WHITE, new Position(6, 7)));
 
         // 4 bishops
-        state.add(new Bishop(Color.WHITE, new Position(2, 0)));
-        state.add(new Bishop(Color.WHITE, new Position(5, 0)));
-        state.add(new Bishop(Color.BLACK, new Position(2, 7)));
-        state.add(new Bishop(Color.BLACK, new Position(5, 7)));
+        state.add(new Bishop(Color.BLACK, new Position(2, 0)));
+        state.add(new Bishop(Color.BLACK, new Position(5, 0)));
+        state.add(new Bishop(Color.WHITE, new Position(2, 7)));
+        state.add(new Bishop(Color.WHITE, new Position(5, 7)));
 
         // 4 kings and queens
-        state.add(new King(Color.WHITE, new Position(3, 0)));
-        state.add(new Queen(Color.WHITE, new Position(4, 0)));
-        state.add(new King(Color.BLACK, new Position(3, 7)));
-        state.add(new Queen(Color.BLACK, new Position(4, 7)));
+        state.add(new King(Color.BLACK, new Position(3, 0)));
+        state.add(new Queen(Color.BLACK, new Position(4, 0)));
+        state.add(new King(Color.WHITE, new Position(3, 7)));
+        state.add(new Queen(Color.WHITE, new Position(4, 7)));
 
         return new Board(state);
     }
 
-    public void move(Position target, Position destination){
-        
+    @Override
+    public Board clone(){
+        ArrayList<Piece> newState = new ArrayList<>();
+
+        for (Piece p : state) {
+            newState.add(p.clone());
+        }
+
+        return new Board(newState);
+    }
+
+    public Board move(Position target, Position destination){
+        Board newBoard = this.clone();
+
+        findAt(target).ifPresent(piece -> {
+            newBoard.state.removeIf(p -> p.getPosition().equals(target) || p.getPosition().equals(destination));
+            newBoard.state.add(piece.move(destination));
+        });
+
+        return newBoard;
+    }
+
+    public boolean isKingInCheck(Color color){
+        Optional<Piece> mKing = state.stream()
+            .filter(p -> p instanceof King && p.getColor() == color)
+            .findFirst();
+
+        return mKing.map(piece -> isPieceThreathened(piece)).orElse(false);
+    }
+
+    public boolean isPieceThreathened(Piece p){
+        for (Piece other : state) {
+            if (other.getColor() != p.getColor() &&
+            other.calculateValidMoves(this).contains(p.getPosition())){
+                return true;
+            }
+        }   
+
+        return false;
     }
 
     public char getIconAtPosition(Position p){

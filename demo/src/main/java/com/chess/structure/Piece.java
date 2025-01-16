@@ -2,15 +2,10 @@ package com.chess.structure;
 
 import java.util.ArrayList;
 
-public class Piece implements Cloneable {
+public abstract class Piece implements Cloneable {
     protected Color color;
     protected char icon;
     protected Position pos;
-
-    private Piece(Color c, Position p){
-        this.color = c;
-        this.pos = p;
-    }
 
     public Color getColor(){
         return this.color;
@@ -25,18 +20,22 @@ public class Piece implements Cloneable {
     }
 
     public Piece move(Position p){
-        try{
-            Piece moved = (Piece) super.clone();
+        Piece moved = this.clone();
+        moved.pos = p;
+        
+        return moved;
+    }
+    
+    public Piece clone() {
+        try {
+            Piece clone = (Piece) super.clone();
 
-            moved.pos = p;
-
-            return moved;
+            return clone;
         } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
             return null;
         }
     }
 
-    public ArrayList<Position> calculateValidMoves(Board state){
-        return new ArrayList<>();
-    };
+    public abstract ArrayList<Position> calculateValidMoves(Board state);
 }
