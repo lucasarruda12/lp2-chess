@@ -24,7 +24,15 @@ public class ChessGame {
             return new ArrayList<>();
         }
 
-        return gameBoard.getPossibleMovesFromPosition(p);
+        ArrayList<Position> validMoves = gameBoard.getPossibleMovesFromPosition(p);
+        validMoves.removeIf(target -> doesMoveThreatenKing(p, target));
+        return validMoves;
+    }
+
+    private boolean doesMoveThreatenKing(Position target, Position destination){
+        Board possibleBoard = gameBoard.move(target, destination);
+
+        return possibleBoard.isKingInCheck(turn);
     }
 
     public void move(Position target, Position destination){
