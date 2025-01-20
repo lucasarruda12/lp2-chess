@@ -1,7 +1,7 @@
 # lp2-chess
 Chess implementation in Java submitted as final assignment for the Programming Languages II class at [IMD](imd.ufrn.br)/[UFRN](ufrn.br)
 
-## Initial Class Diagram
+## Class Diagram
 
 ```mermaid
 classDiagram
@@ -16,7 +16,7 @@ classDiagram
     ChessGame : + boolean stalemate() 
 
     Board : - ArrayList<Piece> state
-    Board : + Board(ArrayList<Piece> state)
+    Board : - Board (ArrayList<Piece> state)
     Board : + static Board newGame()
     Board : + Board clone()
     Board : + Board move(Position target, Position destination)
@@ -46,8 +46,8 @@ classDiagram
 
     Position : - int x
     Position : - int y
-    position : + int getX()
-    position : + int getY()
+    Position : + int getX()
+    Position : + int getY()
     Position : + Position(int x, int y)
     Position : + Position move(int x2, int y2)
     Position : + int to1D()
@@ -72,4 +72,18 @@ classDiagram
 
     Knight : + Knight(Color color, Position pos)
     Knight : + ArrayList<Position> calculateValidMoves(Board state)
+
+    Piece <|-- Rook
+    Piece <|-- Pawn
+    Piece <|-- Knight
+    Piece <|-- King
+    Piece <|-- Queen
+    Piece <|-- Bishop
+
+    Piece o-- Color
+    Piece o-- Position
+
+    Board *-- Piece
+
+    ChessGame *-- Board
 ```
