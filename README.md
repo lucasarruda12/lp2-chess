@@ -5,8 +5,8 @@ Chess implementation in Java submitted as final assignment for the Programming L
 
 ```mermaid
 classDiagram
-    ChessGame : - Board gameBoard;
-    ChessGame : - Color turn;
+    ChessGame : - Board gameBoard
+    ChessGame : - Color turn
     ChessGame : + ChessGame()
     ChessGame : + char getIconAtPosition(int x, int y)
     ChessGame : + ArrayList<Position> getPossibleMovesFromPosition(Position p) 
@@ -42,7 +42,7 @@ classDiagram
     Piece : + Position getPosition()
     Piece : + Piece move(Position p)
     Piece : + Piece clone() 
-    Piece : + abstract ArrayList<Position> calculateValidMoves(Board state);
+    Piece : + abstract ArrayList<Position> calculateValidMoves(Board state)
 
     Position : - int x
     Position : - int y
