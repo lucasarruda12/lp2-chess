@@ -3,7 +3,6 @@ package com.chess;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.chess.rules.King;
 import com.chess.structure.Position;
 
 import javafx.fxml.FXML;

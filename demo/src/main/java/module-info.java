@@ -4,4 +4,5 @@ module com.chess {
 
     opens com.chess to javafx.fxml;
     exports com.chess;
+    exports com.chess.structure;
 }
