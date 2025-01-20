@@ -5,35 +5,71 @@ Chess implementation in Java submitted as final assignment for the Programming L
 
 ```mermaid
 classDiagram
+    ChessGame : - Board gameBoard;
+    ChessGame : - Color turn;
+    ChessGame : + ChessGame()
+    ChessGame : + char getIconAtPosition(int x, int y)
+    ChessGame : + ArrayList<Position> getPossibleMovesFromPosition(Position p) 
+    ChessGame : + boolean doesMoveThreatenKing(Position target, Position destination)
+    ChessGame : + void move(Position target, Position destination)
+    ChessGame : + boolean checkMate(Position p)
+    ChessGame : + boolean stalemate() 
+
+    Board : - ArrayList<Piece> state
+    Board : + Board(ArrayList<Piece> state)
+    Board : + static Board newGame()
+    Board : + Board clone()
+    Board : + Board move(Position target, Position destination)
+    Board : + boolean isKingInCheck(Color color)
+    Board : + boolean isPieceThreathened(Piece p)
+    Board : + char getIconAtPosition(Position p)
+    Board : + boolean isOcupied(Position p)
+    Board : + boolean isOpositColor(Position p, Color c) 
+    Board : + ArrayList<Position> getPossibleMovesFromPosition(Position p) 
+    Board : + Optional<Piece> findAt(Position p)  
 
     class Color {<<enumeration>>}
     Color : BLACK
     Color : WHITE
+    Color : + Color opositeColor()
 
-    Colored : + Color getColor()
-    Colored : + void setColor()
+    class Piece {<<abstract>>}
+    Piece : * Color color
+    Piece : * Position pos
+    Piece : * char icon
+    Piece : + Color getColor()
+    Piece : + char getIcon()
+    Piece : + Position getPosition()
+    Piece : + Piece move(Position p)
+    Piece : + Piece clone() 
+    Piece : + abstract ArrayList<Position> calculateValidMoves(Board state);
 
     Position : - int x
     Position : - int y
-    Position : + getX()
-    Position : + getY()
+    position : + int getX()
+    position : + int getY()
+    Position : + Position(int x, int y)
+    Position : + Position move(int x2, int y2)
+    Position : + int to1D()
+    Position : + boolean equals(Object obj) 
 
-    Movable : + void getValidMoves(Position p, Colored[][] state)
-    
-    class Piece {<<abstract>>}
-    Piece : - Color color
+    Bishop : + Bishop(Color color, Position pos)
+    Bishop : + ArrayList<Position> calculateValidMoves(Board state)
 
-    Colored <|.. Piece
-    Movable <|.. Piece
+    Pawn : + Pawn(Color color, Position pos)
+    Pawn : + ArrayList<Position> calculateValidMoves(Board state)
+    Pawn : - ArrayList<Position> calculateWhitePawn(Board state)
+    Pawn : - ArrayList<Position> calculateBlackPawn(Board state)
 
+    King : + King(Color color, Position pos)
+    King : + ArrayList<Position> calculateValidMoves(Board state)
 
-    Piece <|.. King
-    Piece <|.. Queen
-    Piece <|.. Bishop
-    Piece <|.. Rook
-    Piece <|.. Knight
-    Piece <|.. Pawn
+    Queen : + Queen(Color color, Position pos)
+    Queen : + ArrayList<Position> calculateValidMoves(Board state)
 
-    Movable -- Position
-    Colored -- Color
+    Rook : + Rook(Color color, Position pos)
+    Rook : + ArrayList<Position> calculateValidMoves(Board state)
+
+    Knight : + Knight(Color color, Position pos)
+    Knight : + ArrayList<Position> calculateValidMoves(Board state)
 ```
